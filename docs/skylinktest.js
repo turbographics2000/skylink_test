@@ -11,8 +11,10 @@ var skylinkDemo = new Skylink();
 skylinkDemo.on('incomingStream', function (peerId, stream, isSelf, peerInfo) {
     console.log(peerInfo.userData);
     if (isSelf || !peerInfo.userData.startsWith('mentor')) return;
-    var vid = document.getElementById(peerId);
+    var vid = document.createElement('video')
+    vid.id = stream.id;
     vid.srcObject = stream;
+    document.appendChild(vid);
 });
 skylinkDemo.on('peerLeft', function (peerId, peerInfo, isSelf) {
     var vid = document.getElementById(peerId);
