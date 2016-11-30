@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <title>skylink test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="style.css" rel="stylesheet">
+    <script src="//cdn.temasys.com.sg/skylink/skylinkjs/0.6.x/skylink.complete.min.js"></script>
+    <video id="myvideo" style="transform: rotateY(-180deg);" autoplay muted></video>
+
+</head>
+
+<body>
+    <script src="skylinktest.js"></script>
+    <script>
+        skylinkDemo.init("e3bb93c0-0728-4460-b2ad-ed735dc5e92a", function (error, success) {
+            if (success) {
+                skylinkDemo.joinRoom("my_room", {
+                    userData: "learner" + Date.now(),
+                    audio: false,
+                    video: false
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
