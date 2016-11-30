@@ -9,6 +9,7 @@ skylinkDemo.on('peerJoined', function(peerId, peerInfo, isSelf) {
   document.body.appendChild(vid);
 });
 skylinkDemo.on('incomingStream', function(peerId, stream, peerInfo, isSelf) {
+  console.log(peerInfo.userData);
   if(isSelf || !peerInfo.userData.startsWidth('mentor')) return;
   var vid = document.getElementById(peerId);
   attachMediaStream(vid, stream);
