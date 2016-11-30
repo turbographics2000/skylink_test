@@ -1,13 +1,13 @@
 var skylinkDemo = new Skylink();
 
-skylinkDemo.on('peerJoined', function (peerId, peerInfo, isSelf) {
-    if (isSelf || !peerInfo.userData.startsWith('mentor')) return;
-    var vid = document.createElement('video');
-    vid.autoplay = true;
-    vid.muted = true; // Added to avoid feedback when testing locally
-    vid.id = peerId;
-    document.body.appendChild(vid);
-});
+// skylinkDemo.on('peerJoined', function (peerId, peerInfo, isSelf) {
+//     if (isSelf || !peerInfo.userData.startsWith('mentor')) return;
+//     var vid = document.createElement('video');
+//     vid.autoplay = true;
+//     vid.muted = true; // Added to avoid feedback when testing locally
+//     vid.id = peerId;
+//     document.body.appendChild(vid);
+// });
 skylinkDemo.on('incomingStream', function (peerId, stream, isSelf, peerInfo) {
     console.log(peerInfo.userData);
     if (isSelf || !peerInfo.userData.startsWith('mentor')) return;
@@ -19,8 +19,14 @@ skylinkDemo.on('peerLeft', function (peerId, peerInfo, isSelf) {
     vid && document.body.removeChild(vid);
 });
 skylinkDemo.on('mediaAccessSuccess', function (stream) {
-    var vid = document.getElementById('myvideo');
-    vid && attachMediaStream(vid, stream);
+    var vid = document.createElement('video');
+    vid.width = 320;
+    vid.height = 240;
+    vid.autoplay = true;
+    vid.muted = true; // Added to avoid feedback when testing locally
+    vid.id = stream.id;
+    document.body.appendChild(vid);
+    vid.srcObject = stream;
 });
 
 /****  skylink.init() execute in .html file  ****/

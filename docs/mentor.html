@@ -35,14 +35,7 @@
                         },
                         audio: true
                     },function (error, stream) {
-                        if (error) return;
-                        var vid = document.createElement('video');
-                        vid.autoplay = true;
-                        vid.muted = true; // Added to avoid feedback when testing locally
-                        vid.id = stream.id;
-                        document.body.appendChild(vid);
-                        vid.srcObject = stream;
-                        vid.play();
+                        // 
                     });
                 }
                 btnContainer.appendChild(btn);
