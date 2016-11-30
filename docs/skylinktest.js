@@ -59,7 +59,8 @@ navigator.mediaDevices.enumerateDevices().then(devices => {
         }
         document.body.appendChild(btn);
     })
-})
+});
+
 btnGetUserMedia.onclick = function () {
     skylinkDemo.getUserMedia(function (error, stream) {
         if (error) return;
