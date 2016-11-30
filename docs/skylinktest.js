@@ -1,7 +1,7 @@
 var skylinkDemo = new Skylink();
 
 skylinkDemo.on('peerJoined', function(peerId, peerInfo, isSelf) {
-  if(isSelf || !peerInfo.userData.startsWidth('mentor')) return;
+  if(isSelf || !peerInfo.userData.startsWith('mentor')) return;
   var vid = document.createElement('video');
   vid.autoplay = true;
   vid.muted = true; // Added to avoid feedback when testing locally
