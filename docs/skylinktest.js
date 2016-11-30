@@ -12,6 +12,10 @@ skylinkDemo.on('incomingStream', function (peerId, stream, isSelf, peerInfo) {
     console.log(peerInfo.userData);
     if (isSelf || !peerInfo.userData.startsWith('mentor')) return;
     var vid = document.createElement('video')
+    vid.width = 320;
+    vid.height = 240;
+    vid.autoplay = true;
+    vid.muted = true; // Added to avoid feedback when testing locally
     vid.id = stream.id;
     vid.srcObject = stream;
     document.body.appendChild(vid);
