@@ -12,7 +12,7 @@ skylinkDemo.on('incomingStream', function (peerId, stream, isSelf, peerInfo) {
     console.log(peerInfo.userData);
     if (isSelf || !peerInfo.userData.startsWith('mentor')) return;
     var vid = document.getElementById(peerId);
-    attachMediaStream(vid, stream);
+    vid.srcObject = stream;
 });
 skylinkDemo.on('peerLeft', function (peerId, peerInfo, isSelf) {
     var vid = document.getElementById(peerId);
