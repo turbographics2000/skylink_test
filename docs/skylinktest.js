@@ -14,7 +14,7 @@ skylinkDemo.on('incomingStream', function (peerId, stream, isSelf, peerInfo) {
     var vid = document.createElement('video')
     vid.id = stream.id;
     vid.srcObject = stream;
-    document.appendChild(vid);
+    document.body.appendChild(vid);
 });
 skylinkDemo.on('peerLeft', function (peerId, peerInfo, isSelf) {
     var vid = document.getElementById(peerId);
