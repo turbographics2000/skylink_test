@@ -11,7 +11,7 @@ skylinkDemo.on('peerJoined', function(peerId, peerInfo, isSelf) {
   vid.id = peerId;
   document.body.appendChild(vid);
 });
-skylinkDemo.on('incomingStream', function(peerId, stream, isSelf) {
+skylinkDemo.on('incomingStream', function(peerId, stream, peerInfo, isSelf) {
   if(isSelf) return;
   var vid = document.getElementById(peerId);
   attachMediaStream(vid, stream);
