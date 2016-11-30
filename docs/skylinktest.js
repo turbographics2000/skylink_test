@@ -1,26 +1,26 @@
 var skylinkDemo = new Skylink();
 
-skylinkDemo.on('peerJoined', function(peerId, peerInfo, isSelf) {
-  if(isSelf || !peerInfo.userData.startsWith('mentor')) return;
-  var vid = document.createElement('video');
-  vid.autoplay = true;
-  vid.muted = true; // Added to avoid feedback when testing locally
-  vid.id = peerId;
-  document.body.appendChild(vid);
+skylinkDemo.on('peerJoined', function (peerId, peerInfo, isSelf) {
+    if (isSelf || !peerInfo.userData.startsWith('mentor')) return;
+    var vid = document.createElement('video');
+    vid.autoplay = true;
+    vid.muted = true; // Added to avoid feedback when testing locally
+    vid.id = peerId;
+    document.body.appendChild(vid);
 });
-skylinkDemo.on('incomingStream', function(peerId, stream, isSelf, peerInfo) {
-  console.log(peerInfo.userData);
-  if(isSelf || !peerInfo.userData.startsWith('mentor')) return;
-  var vid = document.getElementById(peerId);
-  attachMediaStream(vid, stream);
+skylinkDemo.on('incomingStream', function (peerId, stream, isSelf, peerInfo) {
+    console.log(peerInfo.userData);
+    if (isSelf || !peerInfo.userData.startsWith('mentor')) return;
+    var vid = document.getElementById(peerId);
+    attachMediaStream(vid, stream);
 });
-skylinkDemo.on('peerLeft', function(peerId, peerInfo, isSelf) {
-  var vid = document.getElementById(peerId);
-  vid && document.body.removeChild(vid);
+skylinkDemo.on('peerLeft', function (peerId, peerInfo, isSelf) {
+    var vid = document.getElementById(peerId);
+    vid && document.body.removeChild(vid);
 });
-skylinkDemo.on('mediaAccessSuccess', function(stream) {
-  var vid = document.getElementById('myvideo');
-  vid && attachMediaStream(vid, stream);
+skylinkDemo.on('mediaAccessSuccess', function (stream) {
+    var vid = document.getElementById('myvideo');
+    vid && attachMediaStream(vid, stream);
 });
 
 // skylink.init() execute in .html file
@@ -33,3 +33,16 @@ skylinkDemo.on('mediaAccessSuccess', function(stream) {
 //      });
 //    }
 //  });
+
+btnGetUserMedia.onclick = function () {
+    skylinkDemo.getUserMedia(function (error, stream) {
+        if (error) return;
+        var vid = document.createElement('video');
+        vid.autoplay = true;
+        vid.muted = true; // Added to avoid feedback when testing locally
+        vid.id = stream.id;
+        document.body.appendChild(vid);
+        vid.srcObject = stream;
+        vid.play();
+    });
+}
