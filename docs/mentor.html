@@ -21,6 +21,33 @@
                 });
             }
         });
+
+        navigator.mediaDevices.enumerateDevices().then(devices => {
+            let videoDevices = devices.filter(device => device.kind === 'videoinput');
+            videoDevices.forEach(device => {
+                let btn = document.createElement('button');
+                btn.textContent = device.label;
+                btn.dataset.deviceId = device.deviceId;
+                btn.onclick = function() {
+                    skylinkDemo.getUserMedia({
+                        video: {
+                            deviceId: this.dataset.deviceId
+                        },
+                        audio: true
+                    },function (error, stream) {
+                        if (error) return;
+                        var vid = document.createElement('video');
+                        vid.autoplay = true;
+                        vid.muted = true; // Added to avoid feedback when testing locally
+                        vid.id = stream.id;
+                        document.body.appendChild(vid);
+                        vid.srcObject = stream;
+                        vid.play();
+                    });
+                }
+                btnContainer.appendChild(btn);
+            });
+        });
     </script>
 </body>
 
