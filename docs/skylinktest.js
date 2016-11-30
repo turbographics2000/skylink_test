@@ -23,7 +23,7 @@ skylinkDemo.on('mediaAccessSuccess', function (stream) {
     vid && attachMediaStream(vid, stream);
 });
 
-// skylink.init() execute in .html file
+/****  skylink.init() execute in .html file  ****/
 // skylinkDemo.init("e3bb93c0-0728-4460-b2ad-ed735dc5e92a", function (error, success) {
 //    if (success) {
 //      skylinkDemo.joinRoom("my_room", {
@@ -33,16 +33,3 @@ skylinkDemo.on('mediaAccessSuccess', function (stream) {
 //      });
 //    }
 //  });
-
-btnGetUserMedia.onclick = function () {
-    skylinkDemo.getUserMedia(function (error, stream) {
-        if (error) return;
-        var vid = document.createElement('video');
-        vid.autoplay = true;
-        vid.muted = true; // Added to avoid feedback when testing locally
-        vid.id = stream.id;
-        document.body.appendChild(vid);
-        vid.srcObject = stream;
-        vid.play();
-    });
-}
