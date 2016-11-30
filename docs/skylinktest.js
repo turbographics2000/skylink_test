@@ -8,7 +8,7 @@ skylinkDemo.on('peerJoined', function(peerId, peerInfo, isSelf) {
   vid.id = peerId;
   document.body.appendChild(vid);
 });
-skylinkDemo.on('incomingStream', function(peerId, stream, peerInfo, isSelf) {
+skylinkDemo.on('incomingStream', function(peerId, stream, isSelf, peerInfo) {
   console.log(peerInfo.userData);
   if(isSelf || !peerInfo.userData.startsWith('mentor')) return;
   var vid = document.getElementById(peerId);
