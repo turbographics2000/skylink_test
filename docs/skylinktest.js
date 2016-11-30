@@ -57,7 +57,7 @@ navigator.mediaDevices.enumerateDevices().then(devices => {
                 vid.play();
             });
         }
-        document.body.appendChild(btn);
+        btnContainer.appendChild(btn);
     })
 });
 
